@@ -2098,13 +2098,9 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Component id="jLabel38" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser1" min="-2" pref="162" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
                                   <Component id="jLabel39" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser2" min="-2" pref="162" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
                                   <Component id="jButton1" min="-2" pref="120" max="-2" attributes="0"/>
                                   <EmptySpace pref="58" max="32767" attributes="0"/>
                               </Group>
@@ -2116,10 +2112,8 @@
                                   <EmptySpace pref="22" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel39" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jDateChooser2" alignment="1" pref="31" max="32767" attributes="0"/>
                                       <Component id="jLabel38" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jDateChooser1" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jButton1" alignment="1" pref="31" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -2127,8 +2121,6 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel38">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ng&#xe0;y b&#x1eaf;t &#x111;&#x1ea7;u"/>
@@ -2138,8 +2130,6 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ng&#xe0;y k&#x1ebf;t th&#xfa;c"/>
                           </Properties>
-                        </Component>
-                        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton1">
                           <Properties>

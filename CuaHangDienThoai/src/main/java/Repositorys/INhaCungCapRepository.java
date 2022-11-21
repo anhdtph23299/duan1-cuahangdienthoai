@@ -4,19 +4,17 @@
  */
 package Repositorys;
 
-import DomainModel.ChucVu;
+import DomainModel.NhaCungCap;
 import java.util.List;
 
 /**
  *
  * @author ongbi
  */
-public interface IChucVuRepository {
-    List<ChucVu> getAll();
+public interface INhaCungCapRepository {
+      List<NhaCungCap> getAll();
     
-    boolean SaveOrUpdate(ChucVu cv);
-      
-    boolean khoiPhuc(ChucVu cv);
-    
-    boolean delete(ChucVu cv);
+    boolean SaveOrUpdate(NhaCungCap nhaCungCap);
+    boolean khoiPhuc(NhaCungCap nhaCungCap);
+    boolean delete(NhaCungCap nhaCungCap);
 }

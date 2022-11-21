@@ -4,7 +4,6 @@
  */
 package ViewModel;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,12 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class QlChucVu {
- private UUID id;
- private String Ma;
- private String Ten;
- private BigDecimal Luong;
- private int trangThai;
- 
- 
+public class QLNhaCungCap {
+
+    private UUID id;
+    private String ma;
+    private String diaChi;
+    private String ten;
+    private String sdt;
+    private String email;
+    private int trangThai;
 }

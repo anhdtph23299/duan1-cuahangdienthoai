@@ -20,9 +20,11 @@ public class ChucVuRepository implements IChucVuRepository{
 
     @Override
     public List<ChucVu> getAll() {
-       String hql = "From ChucVu";
+       String hql = "From ChucVu ";
         try (Session session = new HiberUtill().getFACTORY().openSession()){
+            
             Query q = session.createQuery(hql);
+//            q.setParameter("m", "CV02");
             return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,6 +65,25 @@ public class ChucVuRepository implements IChucVuRepository{
         }
         return check;    }
      public static void main(String[] args) {
+         
         System.out.println(new ChucVuRepository().getAll().size());
+    }
+
+    @Override
+    public boolean khoiPhuc(ChucVu cv) {
+ boolean check;
+        String hql = "Update TrangThai Form NhaCungCap Where IdNCC=?";
+        Transaction transaction = null;
+        try ( Session session = new HiberUtill().getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(cv);
+            check = true;
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            check = false;
+            transaction.rollback();
+        }
+        return check;
     }
 }

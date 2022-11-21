@@ -13,25 +13,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ViewModel.QlChucVu;
-import Services.IChucVuService;
-import Services.impl.ChucVuSevice;
+import Services.INhaCungCapService;
+import Services.impl.NhaCungCapService;
+import ViewModel.QLNhaCungCap;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Admin
  */
-public class ChucVu extends javax.swing.JFrame {
+public class NhaCungCap extends javax.swing.JFrame {
 
-    private IChucVuService iChucVuService;
-    private List<QlChucVu> listQL;
+    private INhaCungCapService iNhaCungCapService;
+    private List<QLNhaCungCap> listNCCC;
 
-    public ChucVu() {
+    public NhaCungCap() {
         initComponents();
-        iChucVuService = new ChucVuSevice();
-        listQL = iChucVuService.getAll();
+        iNhaCungCapService = new NhaCungCapService();
+        listNCCC = iNhaCungCapService.getAll();
         this.setExtendedState(MAXIMIZED_BOTH);
 //        setColor(btn_1);
 //        ind_1.setOpaque(true);
@@ -43,12 +43,14 @@ public class ChucVu extends javax.swing.JFrame {
         DefaultTableModel dtm = (DefaultTableModel) tbList.getModel();
         dtm.setRowCount(0);
 
-        for (QlChucVu qLChucVu : this.iChucVuService.getAll()) {
+        for (QLNhaCungCap qlncc : this.iNhaCungCapService.getAll()) {
             Object[] rowData = {
-                qLChucVu.getMa(),
-                qLChucVu.getTen(),
-                qLChucVu.getTrangThai() == 0 ? "Đang Hoạt Động" : "Không Hoạt Động",
-                qLChucVu.getLuong()
+                qlncc.getMa(),
+                qlncc.getDiaChi(),
+                qlncc.getTen(),
+                qlncc.getSdt(),
+                qlncc.getEmail(),
+                qlncc.getTrangThai() == 0 ? "Đang Hoạt Động" : "Không Hoạt Động"
 
             };
             dtm.addRow(rowData);
@@ -56,9 +58,12 @@ public class ChucVu extends javax.swing.JFrame {
     }
 
     private void clearForm() {
-        txtLuong.setText("");
-        txtMa.setText("");
+        txtDiaChi.setText("");
+        txtEmail.setText("");
         txtTen.setText("");
+        txtDienThoai.setText("");
+        txtNCC.setText("");
+        txtDienThoai.setText("");
     }
 
     /**
@@ -126,12 +131,16 @@ public class ChucVu extends javax.swing.JFrame {
         pnlTong = new javax.swing.JPanel();
         pnlMain = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        txtMa = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         txtTen = new javax.swing.JTextField();
-        txtLuong = new javax.swing.JTextField();
+        txtDiaChi = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
+        txtNCC = new javax.swing.JTextField();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        txtDienThoai = new javax.swing.JTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         tbList = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
@@ -1002,21 +1011,18 @@ public class ChucVu extends javax.swing.JFrame {
         jTextField1.setPreferredSize(new java.awt.Dimension(2, 20));
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel44.setText("Quản Lý Chức Vụ");
+        jLabel44.setText("Quản Lý Nhà Cung Cấp ");
 
         javax.swing.GroupLayout pnlSearchLayout = new javax.swing.GroupLayout(pnlSearch);
         pnlSearch.setLayout(pnlSearchLayout);
         pnlSearchLayout.setHorizontalGroup(
             pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSearchLayout.createSequentialGroup()
-                .addContainerGap(974, Short.MAX_VALUE)
+                .addContainerGap(610, Short.MAX_VALUE)
+                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(144, 144, 144)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
-            .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSearchLayout.createSequentialGroup()
-                    .addGap(609, 609, 609)
-                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(610, Short.MAX_VALUE)))
         );
         pnlSearchLayout.setVerticalGroup(
             pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1024,11 +1030,10 @@ public class ChucVu extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(pnlSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlSearchLayout.createSequentialGroup()
-                    .addGap(12, 12, 12)
-                    .addComponent(jLabel44)
-                    .addContainerGap(13, Short.MAX_VALUE)))
+            .addGroup(pnlSearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel44)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1380, 50));
@@ -1041,34 +1046,46 @@ public class ChucVu extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel46.setText("Mã Chức Vụ");
+        jLabel46.setText("MaNCC");
 
         jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel50.setText("Tên Chức Vụ");
+        jLabel50.setText("TenNhaCC");
 
         jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel51.setText("Lương");
+        jLabel51.setText("DiaChi");
+
+        jLabel65.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel65.setText("Email");
+
+        jLabel66.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel66.setText("SDT");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel50)
-                        .addGap(18, 18, 18))
+                    .addComponent(jLabel51)
+                    .addComponent(jLabel50)
+                    .addComponent(jLabel46))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTen, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNCC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(txtDiaChi))
+                .addGap(106, 106, 106)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel46)
-                            .addComponent(jLabel51))
-                        .addGap(22, 22, 22)))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTen, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
-                    .addComponent(txtLuong)
-                    .addComponent(txtMa))
-                .addGap(23, 23, 23))
+                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtEmail))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(48, 48, 48))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1076,16 +1093,20 @@ public class ChucVu extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46)
-                    .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel65))
                 .addGap(35, 35, 35)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel50)
-                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel51))
-                .addContainerGap(107, Short.MAX_VALUE))
+                    .addComponent(jLabel66)
+                    .addComponent(txtDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51)
+                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         tbList.setModel(new javax.swing.table.DefaultTableModel(
@@ -1093,7 +1114,7 @@ public class ChucVu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã", "Tên", "Trạng Thái", "Lương"
+                "Mã", "Địa Chỉ", "Tên", "SDT", "Email", "Trạng Thái"
             }
         ));
         tbList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2299,12 +2320,15 @@ public class ChucVu extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String ten = txtTen.getText().trim();
-        String ma = txtMa.getText().trim();
-        String Luong = txtLuong.getText().trim();
+        String ma = txtEmail.getText().trim();
+        String sdt = txtDienThoai.getText().trim();
+        String diaChi = txtDiaChi.getText().trim();
+        String email = txtEmail.getText().trim();
 
-        QlChucVu chucVu = new QlChucVu(null, ma, ten, new BigDecimal(Luong), 0);
-        iChucVuService.save(chucVu);
+        QLNhaCungCap qlncc = new QLNhaCungCap(null, ma, diaChi, ten, sdt, email, 0);
+        iNhaCungCapService.save(qlncc);
         loadTable();
+        clearForm();
 
     }//GEN-LAST:event_btnThemActionPerformed
 //   private UUID getID(){
@@ -2324,14 +2348,17 @@ public class ChucVu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "chon");
             return;
         }
-        UUID id = iChucVuService.getAll().get(row).getId();
+        UUID id = iNhaCungCapService.getAll().get(row).getId();
         String ten = txtTen.getText().trim();
-        String ma = txtMa.getText().trim();
-        String Luong = txtLuong.getText().trim();
+        String email = txtEmail.getText().trim();
+        String diaChi = txtDiaChi.getText().trim();
+        String sdt = txtDienThoai.getText().trim();
+        String ma = txtNCC.getText().trim();
 
-        QlChucVu chucVu = new QlChucVu(id, ma, ten, new BigDecimal(Luong), 0);
-        iChucVuService.update(chucVu);
+        QLNhaCungCap qlncc = new QLNhaCungCap(id, ma, diaChi, ten, sdt, email, 0);
+        iNhaCungCapService.update(qlncc);
         loadTable();
+        clearForm();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void tbListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListMouseClicked
@@ -2342,26 +2369,33 @@ public class ChucVu extends javax.swing.JFrame {
         }
 //       String id = tbList.getValueAt(row, 0).toString();
         String ma = tbList.getValueAt(row, 0).toString();
-        String ten = tbList.getValueAt(row, 1).toString();
-        String luong = tbList.getValueAt(row, 3).toString();
+        String diaChi = tbList.getValueAt(row, 1).toString();
+        String ten = tbList.getValueAt(row, 2).toString();
+        String sdt = tbList.getValueAt(row, 3).toString();
+        String email = tbList.getValueAt(row, 4).toString();
 
-        txtMa.setText(ma);
+        txtEmail.setText(email);
         txtTen.setText(ten);
-        txtLuong.setText(luong);
+        txtDiaChi.setText(diaChi);
+        txtDienThoai.setText(sdt);
+        txtNCC.setText(ma);
           }//GEN-LAST:event_tbListMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        listQL = iChucVuService.getAll();
+        listNCCC = iNhaCungCapService.getAll();
+
         String ten = txtTen.getText().trim();
-        String ma = txtMa.getText().trim();
-        String Luong = txtLuong.getText().trim();
+        String email = txtEmail.getText().trim();
+        String diaChi = txtDiaChi.getText().trim();
+        String sdt = txtDienThoai.getText().trim();
+        String ma = txtNCC.getText().trim();
 
         int chon = JOptionPane.showConfirmDialog(this, "Xóa Không", "Xóa", JOptionPane.YES_NO_OPTION);
         if (chon != JOptionPane.YES_OPTION) {
             return;
         }
-        QlChucVu chucVu = new QlChucVu(getClick().getId(), ma, ten, new BigDecimal(Luong), 1);
-        iChucVuService.update(chucVu);
+        QLNhaCungCap qlncc = new QLNhaCungCap(getClick().getId(), ma, diaChi, ten, sdt, email, 1);
+        iNhaCungCapService.update(qlncc);
 
         loadTable();
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -2369,22 +2403,25 @@ public class ChucVu extends javax.swing.JFrame {
     private void btnKhoiPhucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucActionPerformed
         khoiPhuc();
     }//GEN-LAST:event_btnKhoiPhucActionPerformed
-    private QlChucVu getClick() {
+    private QLNhaCungCap getClick() {
         int row = tbList.getSelectedRow();
-        return listQL.get(row);
+        return listNCCC.get(row);
     }
 
     private void khoiPhuc() {
-        listQL = iChucVuService.getAll();
+         listNCCC = iNhaCungCapService.getAll();
         String ten = txtTen.getText().trim();
-        String ma = txtMa.getText().trim();
-        String Luong = txtLuong.getText().trim();
+        String email = txtEmail.getText().trim();
+        String diaChi = txtDiaChi.getText().trim();
+        String sdt = txtDienThoai.getText().trim();
+        String ma = txtNCC.getText().trim();
         int chon = JOptionPane.showConfirmDialog(this, "Khôi Phục Không", "Xóa", JOptionPane.YES_NO_OPTION);
         if (chon != JOptionPane.YES_OPTION) {
             return;
         }
-        QlChucVu chucVu = new QlChucVu(getClick().getId(), ma, ten, new BigDecimal(Luong), 0);
-        iChucVuService.update(chucVu);
+
+        QLNhaCungCap qlncc = new QLNhaCungCap(getClick().getId(), ma, diaChi, ten, sdt, email, 0);
+        iNhaCungCapService.update(qlncc);
 
         loadTable();
     }
@@ -2406,21 +2443,23 @@ public class ChucVu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChucVu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhaCungCap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChucVu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhaCungCap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChucVu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhaCungCap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChucVu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NhaCungCap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChucVu().setVisible(true);
+                new NhaCungCap().setVisible(true);
             }
         });
     }
@@ -2556,11 +2595,17 @@ public class ChucVu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2615,8 +2660,13 @@ public class ChucVu extends javax.swing.JFrame {
     private javax.swing.JPanel pnlTong;
     private javax.swing.JPanel side_pane;
     private javax.swing.JTable tbList;
-    private javax.swing.JTextField txtLuong;
-    private javax.swing.JTextField txtMa;
+    private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtDienThoai;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtLuong1;
+    private javax.swing.JTextField txtMa1;
+    private javax.swing.JTextField txtNCC;
     private javax.swing.JTextField txtTen;
+    private javax.swing.JTextField txtTen1;
     // End of variables declaration//GEN-END:variables
 }

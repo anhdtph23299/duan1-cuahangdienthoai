@@ -2379,10 +2379,7 @@ public class ChucVu extends javax.swing.JFrame {
         String ten = txtTen.getText().trim();
         String ma = txtMa.getText().trim();
         String Luong = txtLuong.getText().trim();
-        int chon = JOptionPane.showConfirmDialog(this, "Khôi Phục Không", "Xóa", JOptionPane.YES_NO_OPTION);
-        if (chon != JOptionPane.YES_OPTION) {
-            return;
-        }
+
         QlChucVu chucVu = new QlChucVu(getClick().getId(), ma, ten, new BigDecimal(Luong), 0);
         iChucVuService.update(chucVu);
 

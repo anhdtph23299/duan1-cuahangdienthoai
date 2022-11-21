@@ -35,7 +35,7 @@ public class ChucVuSevice implements IChucVuService {
         listCV.clear();
         listCV = new ArrayList<>();
         for (ChucVu cv : iChucVuRepository.getAll()) {
-            QlChucVu chucVu = new QlChucVu(cv.getId(), cv.getMa(), cv.getTen(), cv.getLuong());
+            QlChucVu chucVu = new QlChucVu(cv.getId(), cv.getMa(), cv.getTen(), cv.getLuong(),cv.getTrangThai());
             listCV.add(chucVu);
         }
         return listCV;
@@ -44,7 +44,7 @@ public class ChucVuSevice implements IChucVuService {
 
     @Override
     public String save(QlChucVu qLCv) {
-        ChucVu chucVu = new ChucVu(null, qLCv.getMa(), qLCv.getTen(), qLCv.getLuong());
+        ChucVu chucVu = new ChucVu(null, qLCv.getMa(), qLCv.getTen(), qLCv.getLuong(),qLCv.getTrangThai());
         if (iChucVuRepository.SaveOrUpdate(chucVu)) {
             return "Save complete";
         } else {
@@ -54,7 +54,7 @@ public class ChucVuSevice implements IChucVuService {
 
     @Override
     public String update(QlChucVu qLCv) {
-        ChucVu chucVu = new ChucVu(qLCv.getId(), qLCv.getMa(), qLCv.getTen(), qLCv.getLuong());
+       ChucVu chucVu = new ChucVu(qLCv.getId(), qLCv.getMa(), qLCv.getTen(), qLCv.getLuong(),qLCv.getTrangThai());
         if (iChucVuRepository.SaveOrUpdate(chucVu)) {
             return "Update Complete";
         } else {
@@ -64,7 +64,7 @@ public class ChucVuSevice implements IChucVuService {
 
     @Override
     public String delete(QlChucVu qLCv) {
-        ChucVu chucVu = new ChucVu(qLCv.getId(), qLCv.getMa(), qLCv.getTen(), qLCv.getLuong());
+    ChucVu chucVu = new ChucVu(null, qLCv.getMa(), qLCv.getTen(), qLCv.getLuong(),qLCv.getTrangThai());
         if (iChucVuRepository.delete(chucVu)) {
             return "Delete Complete";
 
